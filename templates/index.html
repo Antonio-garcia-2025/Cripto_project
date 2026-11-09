@@ -10,31 +10,34 @@
 <body>
     <div class="card">
         <h1>Crypto ML Predictor</h1>
-        <div class="date">Última actualización: {{ data.fecha }}</div>
-        
-        <div class="price-box">
-            <div class="price-label">Precio Actual Real ({{ data.cripto }})</div>
-            <div class="price-value">${{ data.precio }} USD</div>
-        </div>
+        {% if error %}
+        <div class="error-box" role="alert">{{ error }}</div>
+        {% else %}
+            <div class="date">Última actualización: {{ data.fecha }}</div>
 
-        <div>
-            <span class="badge badge-{{ data.prediccion }}">
-                Predicción Mañana: {{ data.prediccion }} (Prob: {{ data.prob_subir }}%)
-            </span>
-        </div>
-
-        <!-- El cuadro adapta su clase CSS dinámicamente según la recomendación del backend -->
-        <div class="recommendation-box {% if data.recommendation == 'COMPRAR' %}rec-COMPRAR{% elif data.recommendation == 'VENDER' %}rec-VENDER{% else %}rec-MANTENER{% endif %}">
-            <div class="rec-label">Sugerencia del Algoritmo</div>
-            <div class="rec-action">
-                {{ data.recommendation }}
+            <div class="price-box">
+                <div class="price-label">Precio Actual Real ({{ data.cripto }})</div>
+                <div class="price-value">${{ data.precio }} USD</div>
             </div>
-            <div class="rec-text">{{ data.motivo }}</div>
-        </div>
 
-        <div class="footer">
-            {{ data.nota }}
-        </div>
+            <div>
+                <span class="badge badge-{{ data.prediccion }}">
+                    Predicción Mañana: {{ data.prediccion }} (Prob: {{ data.prob_subir }}%)
+                </span>
+            </div>
+
+            <div class="recommendation-box {% if data.recomendacion == 'COMPRAR' %}rec-COMPRAR{% elif data.recomendacion == 'VENDER' %}rec-VENDER{% else %}rec-MANTENER{% endif %}">
+                <div class="rec-label">Sugerencia del Algoritmo</div>
+                <div class="rec-action">
+                    {{ data.recomendacion }}
+                </div>
+                <div class="rec-text">{{ data.motivo }}</div>
+            </div>
+
+            <div class="footer">
+                {{ data.nota }}
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>

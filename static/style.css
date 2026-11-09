@@ -127,3 +127,12 @@ h1 {
     font-size: 0.75rem; 
     color: var(--text-muted); 
 }
+
+.error-box {
+    border: 1px solid var(--down-color);
+    border-radius: 12px;
+    padding: 1rem;
+    color: var(--text-main);
+    background-color: rgba(239, 68, 68, 0.12);
+    line-height: 1.5;
+}
